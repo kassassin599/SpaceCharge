@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
     {
       if (GetComponent<PlayerController>())
       {
-        GameManager.instance.endPanelGO.SetActive(true);
+        GameManager.instance.EnableEndScreen(false);
         GameManager.instance.storyPanelGO.SetActive(false);
         GameManager.instance.DisableGO();
       }
@@ -50,6 +50,6 @@ public class Health : MonoBehaviour
 
   void Die()
   {
-    Destroy(gameObject);
+    gameObject.SetActive(false);
   }
 }

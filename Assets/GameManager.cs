@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
   public GameObject[] gameplayGO;
   public GameObject startPanelGO;
   public GameObject endPanelGO;
+  [SerializeField]
+  private TextMeshProUGUI endText;
+  [SerializeField]
+  private TextMeshProUGUI endButtonText;
+
   public GameObject storyPanelGO;
 
   private void Awake()
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
     Time.timeScale = 0f;  // Freezes all gameplay
                           // Optionally disable player/enemy scripts if needed
 
-    
+
   }
 
   // Resumes the gameplay
@@ -137,6 +142,21 @@ public class GameManager : MonoBehaviour
   {
     string currentSceneName = SceneManager.GetActiveScene().name;
     SceneManager.LoadScene(currentSceneName);
+  }
+
+  public void EnableEndScreen(bool playerWon)
+  {
+    endPanelGO.SetActive(true);
+    if (playerWon)
+    {
+      endText.text = "YOU WON!";
+      endButtonText.text = "MENU";
+    }
+    else
+    {
+      endText.text = "YOU LOST!";
+      endButtonText.text = "RESTART";
+    }
   }
 
   public void QuitButton()

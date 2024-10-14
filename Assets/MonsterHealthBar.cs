@@ -35,7 +35,7 @@ public class MonsterHealthBar : MonoBehaviour
     if (currentHealth <= 0)
     {
       //Die();
-      GameManager.instance.endPanelGO.SetActive(true);
+      GameManager.instance.EnableEndScreen(true);
       GameManager.instance.storyPanelGO.SetActive(false);
       GameManager.instance.DisableGO();
     }
@@ -43,6 +43,6 @@ public class MonsterHealthBar : MonoBehaviour
 
   void Die()
   {
-    Destroy(gameObject);
+    gameObject.SetActive(false);
   }
 }
