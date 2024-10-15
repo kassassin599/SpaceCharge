@@ -112,6 +112,16 @@ public class MonsterEnemy : MonoBehaviour
     bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
   }
 
+  public void SetMonsterOGColor()
+  {
+    Invoke("ChangeColor", .1f);
+  }
+
+  public void ChangeColor()
+  {
+    transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+  }
+
   private void OnDisable()
   {
     StopAllCoroutines();

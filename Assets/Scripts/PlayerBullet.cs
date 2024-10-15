@@ -61,7 +61,7 @@ public class PlayerBullet : MonoBehaviour
 
         monsterEnemy.GetComponent<SpriteRenderer>().color = Color.red;
 
-        Invoke("SetMonsterOGColor", 1f);
+        collision.GetComponent<MonsterEnemy>().SetMonsterOGColor();
 
         Destroy(hitHiffectGO, 1f);
 
@@ -73,10 +73,5 @@ public class PlayerBullet : MonoBehaviour
     {
       DestroyBullet();
     }
-  }
-
-  public void SetMonsterOGColor()
-  {
-    monsterEnemy.GetComponent<SpriteRenderer>().color = Color.white;
   }
 }
