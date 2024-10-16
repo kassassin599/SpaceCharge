@@ -4,10 +4,12 @@ public class PlayerBullet : MonoBehaviour
 {
   private Rigidbody2D rb;
   public int damage = 10;
-  [SerializeField]
-  private GameObject hitEffectPrefab;
+  //[SerializeField]
+  //private GameObject hitEffectPrefab;
 
   private GameObject monsterEnemy;
+
+  private Animator animator;
 
   private void OnEnable()
   {
@@ -18,6 +20,7 @@ public class PlayerBullet : MonoBehaviour
   {
     rb = GetComponent<Rigidbody2D>();
 
+    animator = GetComponentInChildren<Animator>();
     // Move the bullet in the current direction it was set
     //rb.velocity = transform.right * bulletSpeed;
 
@@ -43,19 +46,26 @@ public class PlayerBullet : MonoBehaviour
     {
       if (targetHealth.GetComponent<Enemy>())
       {
-        GameObject hitHiffectGO = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        rb.velocity = Vector3.zero;
 
-        Destroy(hitHiffectGO, 1f);
+        //GameObject hitHiffectGO = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        //Destroy(hitHiffectGO, 1f);
+        animator.SetTrigger("Hit");
 
         targetHealth.TakeDamage(damage);
-        DestroyBullet();
+        Invoke("DestroyBullet",.1f);
       }
     }
     if (collision.GetComponent<MonsterEnemy>() || collision.GetComponent<RadialMonsterEnemy>())
     {
       if (FindObjectOfType<MonsterHealthBar>())
       {
-        GameObject hitHiffectGO = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        rb.velocity = Vector3.zero;
+
+        //GameObject hitHiffectGO = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        animator.SetTrigger("Hit");
 
         monsterEnemy = collision.transform.GetChild(0).gameObject;
 
@@ -63,10 +73,12 @@ public class PlayerBullet : MonoBehaviour
 
         collision.GetComponent<MonsterEnemy>().SetMonsterOGColor();
 
-        Destroy(hitHiffectGO, 1f);
+        //Destroy(hitHiffectGO, 1f);
 
         FindObjectOfType<MonsterHealthBar>().TakeDamage(damage);
-        DestroyBullet();
+        //DestroyBullet();
+        Invoke("DestroyBullet", .1f);
+
       }
     }
     if (collision.gameObject.layer == 6 /*Obstacles*/)
