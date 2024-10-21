@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
   bool goingUp = false;
 
   public MonsterEnemy monsterEnemy;
-  public RadialMonsterEnemy radialME;
+  //public RadialMonsterEnemy radialME;
 
   private Camera mainCamera;
   private Vector2 screenBounds;
+
+  [SerializeField]
+  private ParticleSystem effect;
 
   void Start()
   {
@@ -34,20 +37,23 @@ public class PlayerController : MonoBehaviour
     {
       rb.velocity = new Vector2(rb.velocity.x, verticalSpeed);
       goingUp = true;
+      effect.Play();
     }
+    else { effect.Stop(); }
 
-    if (rb.velocity.y <= 1 && goingUp)
-    {
-      monsterEnemy.gameObject.SetActive(false);
-      radialME.gameObject.SetActive(true);
-      goingUp = false;
-    }
-    else if (rb.velocity.y > 1 && goingUp)
-    {
-      monsterEnemy.gameObject.SetActive(true);
-      radialME.gameObject.SetActive(false);
-      goingUp = true;
-    }
+
+    //if (rb.velocity.y <= 1 && goingUp)
+    //{
+    //  monsterEnemy.gameObject.SetActive(false);
+    //  radialME.gameObject.SetActive(true);
+    //  goingUp = false;
+    //}
+    //else if (rb.velocity.y > 1 && goingUp)
+    //{
+    //  monsterEnemy.gameObject.SetActive(true);
+    //  radialME.gameObject.SetActive(false);
+    //  goingUp = true;
+    //}
 
     // Restrict player to stay within the camera bounds
     ClampPlayerToCameraBounds();

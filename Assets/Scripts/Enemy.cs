@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
   private Transform player;
   private bool playerDetected = false; // Flag to indicate if the player is detected
 
+  public GameObject heartPrefab;
+
   void Start()
   {
     player = GameObject.FindWithTag("Player").transform;
@@ -119,6 +121,7 @@ public class Enemy : MonoBehaviour
 
   private void OnDisable()
   {
+    Instantiate(heartPrefab, transform.position, Quaternion.identity);
     if (player)
       player.GetComponent<Health>().CurrentHealth += 30;
   }

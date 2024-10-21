@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using PrimeTween;
 public class PlayerBullet : MonoBehaviour
 {
   private Rigidbody2D rb;
@@ -72,6 +72,8 @@ public class PlayerBullet : MonoBehaviour
         monsterEnemy.GetComponent<SpriteRenderer>().color = Color.red;
 
         collision.GetComponent<MonsterEnemy>().SetMonsterOGColor();
+
+        Tween.ShakeLocalPosition(monsterEnemy.transform, strength: new Vector3(.3f, .3f), duration: .1f, frequency: 3);
 
         //Destroy(hitHiffectGO, 1f);
 

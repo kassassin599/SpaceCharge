@@ -30,12 +30,14 @@ public class PlayerShooting : MonoBehaviour
     if (mousePos.x < transform.position.x)
     {
       // Flip the sprite to face left
-      playerSpriteRenderer.flipY = true;
+      //playerSpriteRenderer.flipY = true;
+      playerSpriteRenderer.gameObject.transform.Rotate(0f, 180f, 0f);
     }
     else
     {
       // Face right
-      playerSpriteRenderer.flipY = false;
+      //playerSpriteRenderer.flipY = false;
+      playerSpriteRenderer.gameObject.transform.Rotate(0f, 0f, 0f);
     }
   }
 

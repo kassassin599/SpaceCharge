@@ -157,6 +157,7 @@ MonoBehaviour:
   spreadAngle: 15
   moveSpeed: 2
   moveDistance: 2
+  heartPrefab: {fileID: 3450555040089120680, guid: 84e9bb0a078e29144a96fc2976f3df2f, type: 3}
 --- !u!114 &-7239387698484192151
 MonoBehaviour:
   m_ObjectHideFlags: 0

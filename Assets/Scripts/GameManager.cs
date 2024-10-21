@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
 
   public void PlayButton()
   {
+    Screen.fullScreen = true;
     PauseGameplay();
     ShowStoryPanel(currentPanelIndex);
     isStoryPlaying = true;
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
 
   public void QuitButton()
   {
-    Application.Quit();
+    Screen.fullScreen = false;
+    //Application.Quit();
   }
 }
