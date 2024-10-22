@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
 
   private void OnDisable()
   {
-    Instantiate(heartPrefab, transform.position, Quaternion.identity);
+    //Instantiate(heartPrefab, transform.position, Quaternion.identity);
     if (player)
       player.GetComponent<Health>().CurrentHealth += 30;
   }

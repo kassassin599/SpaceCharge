@@ -37,9 +37,18 @@ public class PlayerController : MonoBehaviour
     {
       rb.velocity = new Vector2(rb.velocity.x, verticalSpeed);
       goingUp = true;
-      effect.Play();
     }
-    else { effect.Stop(); }
+    if (rb.velocity.y > 0 && !effect.isPlaying)
+    {
+      effect.Play();
+      Debug.Log("Going UP!!!");
+    }
+    else if (rb.velocity.y < 0 && effect.isPlaying)
+    {
+
+      effect.Stop();
+      Debug.Log("Going DOWN!!!");
+    }
 
 
     //if (rb.velocity.y <= 1 && goingUp)

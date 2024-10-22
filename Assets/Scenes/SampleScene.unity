@@ -3568,7 +3568,7 @@ MonoBehaviour:
   verticalSpeed: 3
   horizontalSpeed: 3
   monsterEnemy: {fileID: 176686357}
-  effect: {fileID: 0}
+  effect: {fileID: 2035164130}
 --- !u!114 &1347401012
 MonoBehaviour:
   m_ObjectHideFlags: 0

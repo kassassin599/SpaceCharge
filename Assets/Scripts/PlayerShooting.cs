@@ -7,6 +7,8 @@ public class PlayerShooting : MonoBehaviour
   public float bulletSpeed = 10f;
   public SpriteRenderer playerSpriteRenderer;  // Reference to the player's SpriteRenderer
 
+  bool facingRight = true;
+
   void Update()
   {
     AimAtMouse();
@@ -26,24 +28,29 @@ public class PlayerShooting : MonoBehaviour
     float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
     transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-    // Flip the sprite if the mouse is to the left or right of the player
-    if (mousePos.x < transform.position.x)
+    if (mousePos.x < transform.position.x && facingRight)
     {
-      // Flip the sprite to face left
-      //playerSpriteRenderer.flipY = true;
-      playerSpriteRenderer.gameObject.transform.Rotate(0f, 180f, 0f);
+      Flip();
     }
-    else
+    else if(mousePos.x > transform.position.x && !facingRight)
     {
-      // Face right
-      //playerSpriteRenderer.flipY = false;
-      playerSpriteRenderer.gameObject.transform.Rotate(0f, 0f, 0f);
+      Flip();
     }
+  }
+
+  void Flip()
+  {
+    Vector3 currentScale = gameObject.transform.localScale;
+    currentScale.y *= -1;
+    gameObject.transform.localScale = currentScale;
+
+    facingRight = !facingRight;
   }
 
   void Shoot()
   {
     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    mousePos.z = 0;
     Vector2 direction = (mousePos - transform.position).normalized;
 
     GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity);
